@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db76ad192371c174e92ab82712051b31, type: 3}
+  m_Name: Barrack
+  m_EditorClassIdentifier: 
+  productName: Barrack
+  menuSprite: {fileID: -471753313, guid: e0796f279daa4524d9d98191158a00d8, type: 3}
+  poolType: 1
