@@ -1,13 +1,13 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using GameExt;
 
 public class InformationPanel : CanvasPanelBase
 {
 	[SerializeField] private Image mainImage;
 	[SerializeField] private TextMeshProUGUI nameText;
 
-	private SpriteSetter spriteSetter;
 	private AspectRatioFitter aspectRatioFitter;
 
 	private ProductInfoScriptable currentInfo;
@@ -16,12 +16,10 @@ public class InformationPanel : CanvasPanelBase
 	{
 		base.Awake();
 
-		spriteSetter = new SpriteSetter(mainImage);
-
 		aspectRatioFitter = GetComponentInChildren<AspectRatioFitter>();
 		mainImage.enabled = false;
 
-		ActionManager.ProductSelected += OnProductSelected;
+		//ActionManager.ProductSelected += OnUnitSelected;
 	}
 
 	private void Start()
@@ -29,7 +27,7 @@ public class InformationPanel : CanvasPanelBase
 		ClosePanel();
 	}
 
-	private void OnProductSelected(ProductInfoScriptable info)
+	private void OnUnitSelected(ProductInfoScriptable info)
 	{
 		currentInfo = info;
 
@@ -44,6 +42,6 @@ public class InformationPanel : CanvasPanelBase
 		nameText.text = currentInfo.name;
 
 		mainImage.enabled = true;
-		spriteSetter.SetSprite(currentInfo.MenuSprite, aspectRatioFitter);
+		mainImage.SetMenuSprite(currentInfo.MenuSprite, aspectRatioFitter);
 	}
 }

@@ -8,9 +8,9 @@ public class ProductionMenuPanel : CanvasPanelBase
 	protected override void Awake()
 	{
 		base.Awake();
-		
 		scrollContent = GetComponentInChildren<ScrollContent>();
 	}
+
 
 	private void Start()
 	{

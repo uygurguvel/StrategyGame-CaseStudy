@@ -1,3 +1,4 @@
+using GameExt;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,7 +44,7 @@ public class ScrollContent : MonoBehaviour
 
 		for (int i = 0; i < visibleItemCount; i++)
 		{
-			ProductInfoHolder infoHolder = ActionManager.GetItemFromPool(PoolType.ProductHolder, Vector3.zero, transform).GetComponent<ProductInfoHolder>();
+			ProductInfoHolder infoHolder = ActionManager.GetItemFromPool(PoolType.UI_PRODUCT_HOLDER, Vector3.zero, transform).GetComponent<ProductInfoHolder>();
 			productHolders.Add(infoHolder);
 
 			int productIndex = i % activeProducts.Length;
@@ -64,8 +65,10 @@ public class ScrollContent : MonoBehaviour
 
 	private void SetMinMaxBorder()
 	{
-		float maxYBorder = productHolders[0].transform.position.y;
-		minMaxYBorder = new Vector2(-maxYBorder, maxYBorder);
+		float maxBorder = productHolders[0].transform.position.y;
+		float minBorder = productHolders[productHolders.Count - 2].transform.position.y;
+		
+		minMaxYBorder = new Vector2(minBorder, maxBorder);
 	}
 
 	/// <summary>

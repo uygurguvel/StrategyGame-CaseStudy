@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using GameExt;
 
 public class InfiniteScrollView : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
@@ -37,7 +38,7 @@ public class InfiniteScrollView : MonoBehaviour, IBeginDragHandler, IDragHandler
 	public void OnScroll(Vector2 eventData)
 	{
 		isPositiveScroll = startDragPos.y < currentDragPos.y;
-		
+
 		HandleVerticalScroll();
 	}
 
@@ -51,7 +52,6 @@ public class InfiniteScrollView : MonoBehaviour, IBeginDragHandler, IDragHandler
 			EdgeType targetEdge = !isPositiveScroll ? EdgeType.Down : EdgeType.Top;
 			scrollContent.InsertItem(targetEdge, edgeType);
 		}
-
 	}
 
 }

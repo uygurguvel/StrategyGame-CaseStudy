@@ -1,8 +1,9 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using GameExt;
+using UnityEngine.EventSystems;
 
-public class ProductInfoHolder : MonoBehaviour, IPointerClickHandler
+public class ProductInfoHolder : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
 	[SerializeField] private Image m_Image;
 
@@ -11,7 +12,6 @@ public class ProductInfoHolder : MonoBehaviour, IPointerClickHandler
 	private ProductInfoScriptable productInfo;
 
 	private AspectRatioFitter aspectRatioFitter;
-	private SpriteSetter spriteSetter;
 
 	private int productIndex;
 
@@ -23,8 +23,6 @@ public class ProductInfoHolder : MonoBehaviour, IPointerClickHandler
 	{
 		rectTransform = transform as RectTransform;
 		aspectRatioFitter = GetComponentInChildren<AspectRatioFitter>();
-
-		spriteSetter = new SpriteSetter(m_Image);
 	}
 
 	public void Init(ProductInfoScriptable productInfo, int productIndex)
@@ -32,7 +30,7 @@ public class ProductInfoHolder : MonoBehaviour, IPointerClickHandler
 		this.productInfo = productInfo;
 		this.productIndex = productIndex;
 
-		spriteSetter.SetSprite(productInfo.MenuSprite, aspectRatioFitter);
+		m_Image.SetMenuSprite(productInfo.MenuSprite, aspectRatioFitter);
 	}
 
 	public void SetAnchoredPos(Vector2 pos)
@@ -46,9 +44,17 @@ public class ProductInfoHolder : MonoBehaviour, IPointerClickHandler
 		rectTransform.sizeDelta = itemSize;
 	}
 
-	public void OnPointerClick(PointerEventData eventData)
+	public void OnBeginDrag(PointerEventData eventData)
 	{
-		ActionManager.ProductSelected?.Invoke(productInfo);
+		ActionManager.OnDragBegin?.Invoke(productInfo);
 	}
 
+	/// <summary>
+	/// I didn't want to leave an empty interface, but the OnBeginDrag function doesn't work without it.
+	/// I could have used IPointer, but I didn't want the scroll content while dragging.
+	/// </summary>
+	public void OnDrag(PointerEventData eventData)
+	{
+
+	}
 }
