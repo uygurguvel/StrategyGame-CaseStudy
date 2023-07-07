@@ -29,6 +29,7 @@ namespace GameExt
 		//OTHER_OBJECTS = 30-49;
 		TARGET_POINT = 30,
 		BULLET = 31,
+		HIT_GHOST_TEXT = 32,
 	}
 
 	[Serializable]
@@ -65,6 +66,9 @@ namespace GameExt
 		public void GetDamage(int damage)
 		{
 			currentHealth -= damage;
+
+			HitGhostText hitGhostText = ActionManager.GetItemFromPool(PoolType.HIT_GHOST_TEXT, damageableObject.Transform.position, null).GetComponent<HitGhostText>();
+			hitGhostText.Init(damage);
 
 			if (currentHealth <= 0)
 				Death();
