@@ -3,7 +3,7 @@ using GameExt;
 using TMPro;
 using UnityEngine;
 
-public class HitGhostText : MonoBehaviour
+public class HitGhostText : MonoBehaviour, IPooledObject
 {
 	[SerializeField] private TextMeshPro text;
 
@@ -12,6 +12,8 @@ public class HitGhostText : MonoBehaviour
 	[SerializeField] private float doTime;
 
 	[SerializeField] private Ease ease = Ease.InBack;
+
+	private Vector3 initialScale;
 
 	public void Init(int damage)
 	{
@@ -25,5 +27,19 @@ public class HitGhostText : MonoBehaviour
 			{
 				ActionManager.ReturnItemToPool(gameObject, PoolType.HIT_GHOST_TEXT);
 			});
+	}
+
+	public void OnObjectGetFromPool()
+	{
+		transform.localScale = initialScale;
+	}
+
+	public void OnObjectInstantiate()
+	{
+		initialScale = transform.localScale;
+	}
+
+	public void OnObjectReturnToPool()
+	{
 	}
 }
