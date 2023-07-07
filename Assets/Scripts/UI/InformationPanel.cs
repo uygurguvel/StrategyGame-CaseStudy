@@ -13,6 +13,8 @@ public class InformationPanel : CanvasPanelBase
 	private AspectRatioFitter aspectRatioFitter;
 	private ProductInfoScriptable currentInfo;
 
+	private IProducter currentProducter;
+
 	private UIUnit[] infoHolders = new UIUnit[0];
 
 	protected override void Awake()
@@ -23,6 +25,7 @@ public class InformationPanel : CanvasPanelBase
 		mainImage.enabled = false;
 
 		ActionManager.OpenInformationPanel += OnObjectSelected;
+		ActionManager.InfoObjectRemoved += OnInfoObjectRemoved;
 
 		ClosePanel();
 	}
@@ -35,6 +38,8 @@ public class InformationPanel : CanvasPanelBase
 
 		if (producter != null)
 		{
+			currentProducter = producter;
+
 			SetProducts(producter);
 			VisualizeInfo();
 
@@ -54,6 +59,8 @@ public class InformationPanel : CanvasPanelBase
 	{
 		nameText.text = string.Empty;
 		mainImage.enabled = false;
+
+		currentProducter = null;
 	}
 
 	private void VisualizeInfo()
@@ -88,5 +95,17 @@ public class InformationPanel : CanvasPanelBase
 		}
 
 		Array.Resize(ref infoHolders, 0);
+	}
+
+	private void OnInfoObjectRemoved(IProducter obj)
+	{
+		if (obj != currentProducter)
+			return;
+
+		ClearSubProducts();
+		ClearInformationPanel();
+
+		if (!IsClose)
+			ClosePanel();
 	}
 }

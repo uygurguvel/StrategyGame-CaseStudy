@@ -1,3 +1,4 @@
+using GameExt;
 using UnityEngine;
 
 public interface ISwitcablePanel
@@ -24,4 +25,12 @@ public interface IProducter
 	Transform SpawnPoint { get; }
 
 	void UnitCalled(ProductInfoScriptable productInfo);
+}
+
+public interface IDamageAble
+{
+	Transform Transform { get; }
+	HealthSystem HealthSystem { get; set; }
+
+	void OnDeath();
 }

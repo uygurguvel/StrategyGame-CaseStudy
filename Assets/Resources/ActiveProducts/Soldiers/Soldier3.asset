@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Soldier3
   m_EditorClassIdentifier: 
   menuSprite: {fileID: -1280326202, guid: 2502e66a1bd8e6d439c9e511ccc65086, type: 3}
-  productName: Soldier3
   poolType: 12
+  productName: Soldier3
   size: {x: 1, y: 1}
+  baseHealth: 10
+  attackDamage: 2
+  fireRate: 0.5
+  fireRange: 3.5

@@ -28,6 +28,7 @@ namespace GameExt
 
 		//OTHER_OBJECTS = 30-49;
 		TARGET_POINT = 30,
+		BULLET = 31,
 	}
 
 	[Serializable]
@@ -44,5 +45,40 @@ namespace GameExt
 			this.y = y;
 			this.currentObj = currentObj;
 		}
+	}
+
+	public class HealthSystem
+	{
+		IDamageAble damageableObject;
+
+		private int baseHealh;
+		private int currentHealth;
+
+		public HealthSystem(int baseHealh, IDamageAble damageableObject)
+		{
+			this.baseHealh = baseHealh;
+			currentHealth = baseHealh;
+
+			this.damageableObject = damageableObject;
+		}
+
+		public void GetDamage(int damage)
+		{
+			currentHealth -= damage;
+
+			if (currentHealth <= 0)
+				Death();
+		}
+
+		public void Death()
+		{
+			damageableObject.OnDeath();
+		}
+
+		public void ReSpawn()
+		{
+			currentHealth = baseHealh;
+		}
+
 	}
 }

@@ -10,15 +10,21 @@ public class SoldierBase : GridObjectBase
 	private AIDestinationSetter aiDestinationSetter;
 	private IAstarAI aStar;
 
+	private ShootSystem shootSystem;
+
 	private GridObjectBase target;
 
 	private Transform targetPoint;
 
 	private Coroutine movementCoroutine;
-	private Coroutine attackCoroutine;
 
-	private void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
+
+		shootSystem = GetComponent<ShootSystem>();
+		shootSystem.Init(this, productInfo as SoldiersInfoScriptable);
+
 		aiDestinationSetter = GetComponent<AIDestinationSetter>();
 		aStar = GetComponent<IAstarAI>();
 	}
@@ -28,37 +34,31 @@ public class SoldierBase : GridObjectBase
 		ActionManager.UnitSelected?.Invoke(this);
 	}
 
-	public void SetTarget(Vector3 targetPoint, GridObjectBase target)
+	public void SetTarget(Vector3 targetPos, GridObjectBase target)
 	{
+		shootSystem.StopShooting();
 		StopMovementCoroutine();
-		StopAttackCoroutine();
 
 		bool isAttacking = false;
 
-		if (target != null)
+		if (target != null && target != this)
 		{
 			this.target = target;
-			this.targetPoint = this.target.transform;
-
 			isAttacking = true;
 		}
-		else
-		{
-			this.targetPoint = ActionManager.GetItemFromPool(PoolType.TARGET_POINT, targetPoint, null).transform;
-		}
 
+		targetPoint = ActionManager.GetItemFromPool(PoolType.TARGET_POINT, targetPos, null).transform;
 
-		aiDestinationSetter.target = this.targetPoint;
+		aiDestinationSetter.target = targetPoint;
 		movementCoroutine = StartCoroutine(IEMovement(isAttacking));
-
 	}
 
 	private IEnumerator IEMovement(bool isAttack)
 	{
 		WaitForFixedUpdate wait = new WaitForFixedUpdate();
 
-		float attackRange = 3f;
-		float movementThreshold = isAttack ? attackRange : 0.25f;
+		float movementThreshold = 0.25f;
+		float distThreshold = isAttack ? (productInfo as SoldiersInfoScriptable).FireRange : movementThreshold;
 		float dist;
 
 		aStar.isStopped = false;
@@ -67,24 +67,13 @@ public class SoldierBase : GridObjectBase
 		{
 			dist = (targetPoint.transform.position - transform.position).magnitude;
 
-			if (dist <= movementThreshold)
+			if (dist <= distThreshold)
 			{
-				if (isAttack)
-					attackCoroutine = StartCoroutine(IEAttack());
-
 				StopMovementCoroutine();
+
+				if (isAttack)
+					shootSystem.StartShooting(target);
 			}
-
-			yield return wait;
-		}
-	}
-
-	private IEnumerator IEAttack()
-	{
-		WaitForFixedUpdate wait = new WaitForFixedUpdate();
-
-		while (true)
-		{
 
 			yield return wait;
 		}
@@ -97,19 +86,21 @@ public class SoldierBase : GridObjectBase
 			StopCoroutine(movementCoroutine);
 			movementCoroutine = null;
 
+			ActionManager.ReturnItemToPool(targetPoint.gameObject, PoolType.TARGET_POINT);
 		}
 
 		aiDestinationSetter.target = null;
 		aStar.isStopped = true;
-
 	}
-	private void StopAttackCoroutine()
+
+	public override void OnDeath()
 	{
-		if (attackCoroutine != null)
-		{
-			StopCoroutine(attackCoroutine);
-			attackCoroutine = null;
-		}
+		SetOutline(false);
+		ActionManager.OnUnitRemove?.Invoke(this);
+		StopMovementCoroutine();
+
+
+		base.OnDeath();
 	}
 
 	public void UnitSelected()

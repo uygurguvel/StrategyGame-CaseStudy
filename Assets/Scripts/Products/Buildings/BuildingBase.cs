@@ -1,12 +1,14 @@
+using GameExt;
 using Pathfinding;
 using UnityEngine;
 
-public class BuildingBase : GridObjectBase
+public class BuildingBase : GridObjectBase, IDamageAble
 {
 	[SerializeField] private DynamicGridObstacle dynamicObstacle;
-
-	private void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
+
 		dynamicObstacle = GetComponent<DynamicGridObstacle>();
 	}
 
@@ -19,5 +21,11 @@ public class BuildingBase : GridObjectBase
 	protected override void OnMouseDown()
 	{
 		ActionManager.OpenInformationPanel?.Invoke(productInfo, this as IProducter);
+	}
+
+	public override void OnDeath()
+	{
+		base.OnDeath();
+		ActionManager.InfoObjectRemoved?.Invoke(this as IProducter);
 	}
 }

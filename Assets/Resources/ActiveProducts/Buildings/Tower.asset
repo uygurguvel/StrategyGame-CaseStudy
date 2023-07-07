@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tower
   m_EditorClassIdentifier: 
   menuSprite: {fileID: -1568714672, guid: e0796f279daa4524d9d98191158a00d8, type: 3}
-  productName: Tower
-  description: 
   poolType: 3
+  productName: Tower
   size: {x: 2, y: 5}
+  baseHealth: 150

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Barracks
   m_EditorClassIdentifier: 
   menuSprite: {fileID: -471753313, guid: e0796f279daa4524d9d98191158a00d8, type: 3}
-  productName: Barracks
   poolType: 1
+  productName: Barracks
   size: {x: 4, y: 4}
+  baseHealth: 100
   products:
   - {fileID: 11400000, guid: 7b80265e16ee66349ac1a584ec7ef482, type: 2}
   - {fileID: 11400000, guid: 50b21fc2b9660764a88d2ddd28a9de85, type: 2}

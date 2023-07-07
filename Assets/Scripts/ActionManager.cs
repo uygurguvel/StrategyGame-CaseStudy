@@ -6,9 +6,15 @@ using GameExt;
 
 public static class ActionManager
 {
+	public static Action<IDamageAble> OnObjectDeath { get; set; }
+
 	public static Action<ProductInfoScriptable, IProducter> OpenInformationPanel { get; set; }
+	public static Action<IProducter> InfoObjectRemoved { get; set; }
+
 	public static Action<ProductInfoScriptable> OnDragBegin { get; set; }
+
 	public static Action<SoldierBase> UnitSelected { get; set; }
+	public static Action<SoldierBase> OnUnitRemove { get; set; }
 
 	public static Func<float> CellSize { get; set; }
 

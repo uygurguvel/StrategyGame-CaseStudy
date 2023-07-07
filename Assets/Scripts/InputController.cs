@@ -16,16 +16,19 @@ public class InputController : MonoBehaviour
 
 	private Camera mainCam;
 
+
 	private void Awake()
 	{
 		ActionManager.OnDragBegin += OnDragBegin;
+
 		ActionManager.UnitSelected += OnUnitSelected;
+		ActionManager.OnUnitRemove += OnUnitRemove;
+		ActionManager.OnObjectDeath += OnObjectDeath;
 
 		gridController = GridController.Instance;
 
 		mainCam = Camera.main;
 	}
-
 	private void Update()
 	{
 		if (Input.GetMouseButtonUp(0))
@@ -48,14 +51,14 @@ public class InputController : MonoBehaviour
 
 	private void OnRightClick()
 	{
-		RaycastHit2D rayHit = Physics2D.GetRayIntersection(mainCam.ScreenPointToRay(Input.mousePosition));
+		Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 
-		if (rayHit.collider != null)
+		if (Physics.Raycast(ray, out RaycastHit hit))
 		{
 			if (activeUnit != null)
 			{
-				var gridObj = rayHit.collider.GetComponent<GridObjectBase>();
-				activeUnit.SetTarget(rayHit.point, gridObj);
+				var gridObj = hit.collider.GetComponent<GridObjectBase>();
+				activeUnit.SetTarget(hit.point, gridObj);
 			}
 
 		}
@@ -129,15 +132,23 @@ public class InputController : MonoBehaviour
 
 	private void OnUnitSelected(SoldierBase unit)
 	{
-		if (activeUnit == null)
-			activeUnit = unit;
-
-		if (unit != activeUnit)
-		{
+		if (activeUnit != null)
 			activeUnit.UnitChanged();
-			activeUnit = unit;
-		}
 
+		activeUnit = unit;
 		activeUnit.UnitSelected();
 	}
+
+	private void OnUnitRemove(SoldierBase obj)
+	{
+		if (activeUnit == obj)
+			activeUnit = null;
+	}
+
+	private void OnObjectDeath(IDamageAble obj)
+	{
+		if (activeUnit as IDamageAble == obj)
+			activeUnit = null;
+	}
+
 }
