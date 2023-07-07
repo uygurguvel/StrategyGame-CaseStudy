@@ -9,7 +9,6 @@ public class ProductInfoScriptable : ScriptableObject
 
 	[SerializeField] protected string productName;
 	[SerializeField] protected PoolType poolType;
-
 	[SerializeField] protected Vector2Int size;
 
 	public string ProductName { get => productName; }

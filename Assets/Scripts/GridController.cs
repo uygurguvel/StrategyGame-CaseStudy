@@ -1,8 +1,5 @@
 using Sirenix.OdinInspector;
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 
 using Grid = GameExt.Grid;
@@ -52,7 +49,7 @@ public class GridController : Singleton<GridController>
 		return new Vector3(grid.x, grid.y, 0) * cellSize;
 	}
 
-	public bool IsGridsAvaiable(ProductBase product, Grid controlGrid)
+	public bool IsGridsAvaiable(GridObjectBase product, Grid controlGrid)
 	{
 		bool isAvailable = true;
 		var relevantGrids = GetRelevantGrids(product.ObjectSize, controlGrid);
@@ -81,7 +78,7 @@ public class GridController : Singleton<GridController>
 		return false;
 	}
 
-	public void FillGrids(ProductBase activeProduct, Grid activeGrid)
+	public void FillGrids(GridObjectBase activeProduct, Grid activeGrid)
 	{
 		var relevantGrids = GetRelevantGrids(activeProduct.ObjectSize, activeGrid);
 
@@ -114,5 +111,21 @@ public class GridController : Singleton<GridController>
 
 		return relevantGrids.ToArray();
 	}
+
+#if UNITY_EDITOR
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.black;
+
+		for (int i = 0; i < grids.GetLength(0) - 1; i++)
+		{
+			for (int k = 0; k < grids.GetLength(1) - 1; k++)
+			{
+				Gizmos.DrawLine(GetGridWorldPos(grids[i, k]), GetGridWorldPos(grids[i + 1, k]));
+				Gizmos.DrawLine(GetGridWorldPos(grids[i, k]), GetGridWorldPos(grids[i, k + 1]));
+			}
+		}
+	}
+#endif
 
 }

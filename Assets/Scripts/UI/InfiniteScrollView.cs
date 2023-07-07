@@ -8,8 +8,8 @@ public class InfiniteScrollView : MonoBehaviour, IBeginDragHandler, IDragHandler
 	private ScrollContent scrollContent;
 	private ScrollRect scrollRect;
 
-	private ProductInfoHolder edgeItem;
-	private ProductInfoHolder lastEdgeItem;
+	private UIProduct edgeItem;
+	private UIProduct lastEdgeItem;
 
 	private EdgeType edgeType;
 

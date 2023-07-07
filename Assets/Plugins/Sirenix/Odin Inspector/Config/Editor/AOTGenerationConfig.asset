@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db76ad192371c174e92ab82712051b31, type: 3}
-  m_Name: House
+  m_Script: {fileID: 1726182683, guid: a4865f1ab4504ed8a368670db22f409c, type: 3}
+  m_Name: AOTGenerationConfig
   m_EditorClassIdentifier: 
-  menuSprite: {fileID: 860535421, guid: e0796f279daa4524d9d98191158a00d8, type: 3}
-  productName: House
-  description: Just a simple house.
-  poolType: 0
-  size: {x: 2, y: 2}
+  automateBeforeBuilds: 0
+  deleteDllAfterBuilds: 1
+  AutomateForAllAOTPlatforms: 1
+  automateForPlatforms: 0900000014000000
+  lastScan: 0
+  supportSerializedTypes: []

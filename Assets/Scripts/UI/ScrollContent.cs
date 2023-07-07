@@ -9,7 +9,7 @@ public class ScrollContent : MonoBehaviour
 
 	private RectTransform rectTransform;
 
-	private List<ProductInfoHolder> productHolders;
+	private List<UIProduct> productHolders;
 	private ProductInfoScriptable[] activeProducts;
 
 	private Vector2 minMaxYBorder;
@@ -40,11 +40,11 @@ public class ScrollContent : MonoBehaviour
 	/// </summary>
 	private void CreateProductHolders()
 	{
-		productHolders = new List<ProductInfoHolder>();
+		productHolders = new List<UIProduct>();
 
 		for (int i = 0; i < visibleItemCount; i++)
 		{
-			ProductInfoHolder infoHolder = ActionManager.GetItemFromPool(PoolType.UI_PRODUCT_HOLDER, Vector3.zero, transform).GetComponent<ProductInfoHolder>();
+			UIProduct infoHolder = ActionManager.GetItemFromPool(PoolType.UI_PRODUCT_HOLDER, Vector3.zero, transform).GetComponent<UIProduct>();
 			productHolders.Add(infoHolder);
 
 			int productIndex = i % activeProducts.Length;
@@ -79,7 +79,7 @@ public class ScrollContent : MonoBehaviour
 		return Mathf.CeilToInt(rectTransform.rect.height / itemYBound) + 1;
 	}
 
-	public ProductInfoHolder GetEdgeItem(EdgeType childType)
+	public UIProduct GetEdgeItem(EdgeType childType)
 	{
 		if (childType == EdgeType.Top)
 			return productHolders[0];
@@ -90,7 +90,7 @@ public class ScrollContent : MonoBehaviour
 	/// <summary>
 	/// Checks if an edge activeItem has the reached the out of bounds threshold for the scroll view.
 	/// </summary>
-	public bool IsLimitReached(ProductInfoHolder targetItem, EdgeType edgeType)
+	public bool IsLimitReached(UIProduct targetItem, EdgeType edgeType)
 	{
 		if (edgeType == EdgeType.Top)
 			return minMaxYBorder.y >= targetItem.transform.position.y;
@@ -104,8 +104,8 @@ public class ScrollContent : MonoBehaviour
 	/// </summary>
 	public void InsertItem(EdgeType from, EdgeType target)
 	{
-		ProductInfoHolder activeItem = GetEdgeItem(from);
-		ProductInfoHolder targetItem = GetEdgeItem(target);
+		UIProduct activeItem = GetEdgeItem(from);
+		UIProduct targetItem = GetEdgeItem(target);
 
 		Vector2 offset = (int)target * itemYBound * Vector2.up;
 		activeItem.SetAnchoredPos(targetItem.GetAnchoredPosition() + offset);

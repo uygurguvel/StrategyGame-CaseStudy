@@ -16,7 +16,7 @@ public class CanvasPanelBase : MonoBehaviour, ISwitcablePanel
 
 	protected Vector2 initialPos;
 
-	public SwitchButton switchButton { get; set; }
+	public SwitchButton SwitchButton { get; set; }
 	public bool IsClose { get; set; }
 
 
@@ -25,8 +25,8 @@ public class CanvasPanelBase : MonoBehaviour, ISwitcablePanel
 		rectTransform = GetComponent<RectTransform>();
 		initialPos = rectTransform.anchoredPosition;
 
-		switchButton = GetComponentInChildren<SwitchButton>();
-		switchButton.Init(this);
+		SwitchButton = GetComponentInChildren<SwitchButton>();
+		SwitchButton.Init(this);
 	}
 
 	public void OpenPanel()

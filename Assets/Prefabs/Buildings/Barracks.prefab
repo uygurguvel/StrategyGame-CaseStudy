@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8904953479060334667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1461612051126591595}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1461612051126591595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8904953479060334667}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.083333336, y: -0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7260312979459358566}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1835713141037449089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13,7 +44,7 @@ PrefabInstance:
       objectReference: {fileID: -471753313, guid: e0796f279daa4524d9d98191158a00d8, type: 3}
     - target: {fileID: 9059011885107020004, guid: e94a64602a9b0aa4eb8f0ca68d2af672, type: 3}
       propertyPath: m_Name
-      value: Barrack
+      value: Barracks
       objectReference: {fileID: 0}
     - target: {fileID: 9059011885107020007, guid: e94a64602a9b0aa4eb8f0ca68d2af672, type: 3}
       propertyPath: m_RootOrder
@@ -59,5 +90,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5537888337070206213, guid: e94a64602a9b0aa4eb8f0ca68d2af672, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e94a64602a9b0aa4eb8f0ca68d2af672, type: 3}
+--- !u!212 &656683011051145747 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1181283235560256914, guid: e94a64602a9b0aa4eb8f0ca68d2af672, type: 3}
+  m_PrefabInstance: {fileID: 1835713141037449089}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1835713141738922210 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1808850787, guid: e94a64602a9b0aa4eb8f0ca68d2af672, type: 3}
+  m_PrefabInstance: {fileID: 1835713141037449089}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7260312979459358565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9059011885107020004, guid: e94a64602a9b0aa4eb8f0ca68d2af672, type: 3}
+  m_PrefabInstance: {fileID: 1835713141037449089}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7944677861692810525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7260312979459358565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937ec78aa57fda045b0c86a8bcc85384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRend: {fileID: 656683011051145747}
+  boxCollider: {fileID: 1835713141738922210}
+  productInfo: {fileID: 11400000, guid: ef8e9d5d6d5bb194a9ce814684867497, type: 2}
+  spawnPoint: {fileID: 1461612051126591595}
+--- !u!4 &7260312979459358566 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9059011885107020007, guid: e94a64602a9b0aa4eb8f0ca68d2af672, type: 3}
+  m_PrefabInstance: {fileID: 1835713141037449089}
+  m_PrefabAsset: {fileID: 0}

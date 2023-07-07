@@ -1,7 +1,7 @@
 using UnityEngine;
 
 using Grid = GameExt.Grid;
-public abstract class ProductBase : MonoBehaviour, IGridObject
+public abstract class GridObjectBase : MonoBehaviour, IGridObject
 {
 	[SerializeField] protected SpriteRenderer spriteRend;
 	[SerializeField] protected BoxCollider2D boxCollider;
@@ -14,6 +14,7 @@ public abstract class ProductBase : MonoBehaviour, IGridObject
 	public Vector3 PivotOffset { get; set; }
 	public Vector2Int ObjectSize { get; set; }
 	public bool IsFit { get; set; }
+
 
 	protected virtual void Start()
 	{
@@ -71,4 +72,6 @@ public abstract class ProductBase : MonoBehaviour, IGridObject
 	{
 		currentGrids = relevantGrids;
 	}
+
+	protected abstract void OnMouseDown();
 }

@@ -13,7 +13,7 @@ namespace GameExt
 	{
 		//BUILDINGS 0-9;
 		BUILDING_HOUSE = 0,
-		BUILDING_BARRACK = 1,
+		BUILDING_BARRACKS = 1,
 		BUILDING_POWERPLANT = 2,
 		BUILDING_TOWER = 3,
 
@@ -24,7 +24,7 @@ namespace GameExt
 
 		//UI_ELEMENTS 20,29;
 		UI_PRODUCT_HOLDER = 20,
-
+		UI_UNIT_HOLDER = 21,
 	}
 
 	[Serializable]
@@ -33,9 +33,9 @@ namespace GameExt
 		public int x;
 		public int y;
 
-		public ProductBase currentObj;
+		public GridObjectBase currentObj;
 
-		public Grid(int x, int y, ProductBase currentObj)
+		public Grid(int x, int y, GridObjectBase currentObj)
 		{
 			this.x = x;
 			this.y = y;

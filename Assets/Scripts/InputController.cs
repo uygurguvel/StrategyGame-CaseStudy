@@ -8,7 +8,7 @@ public class InputController : MonoBehaviour
 	private GridController gridController;
 	private Coroutine dragCoroutine;
 
-	private ProductBase activeProduct;
+	private GridObjectBase activeProduct;
 	private Grid activeGrid;
 
 	private Camera mainCam;
@@ -43,7 +43,7 @@ public class InputController : MonoBehaviour
 	{
 		Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-		ProductBase product = ActionManager.GetItemFromPool(productInfo.PoolType, pos, null).GetComponent<ProductBase>();
+		GridObjectBase product = ActionManager.GetItemFromPool(productInfo.PoolType, pos, null).GetComponent<GridObjectBase>();
 
 		if (product != null)
 		{
@@ -52,7 +52,7 @@ public class InputController : MonoBehaviour
 		}
 	}
 
-	private IEnumerator IEDrag(ProductBase product)
+	private IEnumerator IEDrag(GridObjectBase product)
 	{
 		WaitForFixedUpdate wait = new WaitForFixedUpdate();
 
@@ -64,7 +64,7 @@ public class InputController : MonoBehaviour
 		{
 			targetPos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
-			activeGrid = gridController.GetGridByWorldPos(targetPos - product.PivotOffset);
+			activeGrid = gridController.GetGridByWorldPos(targetPos/* + product.PivotOffset*/);
 
 			if (activeGrid != null)
 			{
@@ -84,6 +84,10 @@ public class InputController : MonoBehaviour
 
 
 				product.Snap(gridController.GetGridWorldPos(activeGrid));
+			}
+			else
+			{
+				product.SetFitState(false);
 			}
 
 			yield return wait;

@@ -11,7 +11,6 @@ public class ProductionMenuPanel : CanvasPanelBase
 		scrollContent = GetComponentInChildren<ScrollContent>();
 	}
 
-
 	private void Start()
 	{
 		activeProducts = Resources.LoadAll<BuildingInfoScriptable>("ActiveProducts/Buildings");

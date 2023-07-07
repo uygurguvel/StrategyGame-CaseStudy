@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db76ad192371c174e92ab82712051b31, type: 3}
-  m_Name: House
+  m_Script: {fileID: 11500000, guid: c90d52ee96637b24d8e6d5e730c537f1, type: 3}
+  m_Name: Soldier1
   m_EditorClassIdentifier: 
-  menuSprite: {fileID: 860535421, guid: e0796f279daa4524d9d98191158a00d8, type: 3}
-  productName: House
-  description: Just a simple house.
-  poolType: 0
-  size: {x: 2, y: 2}
+  menuSprite: {fileID: -1205707440, guid: 2502e66a1bd8e6d439c9e511ccc65086, type: 3}
+  productName: Soldier1
+  poolType: 10
+  size: {x: 1, y: 1}
