@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,20 +12,26 @@ public class InputController : MonoBehaviour
 	private GridObjectBase activeProduct;
 	private Grid activeGrid;
 
+	private SoldierBase activeUnit;
+
 	private Camera mainCam;
 
 	private void Awake()
 	{
 		ActionManager.OnDragBegin += OnDragBegin;
+		ActionManager.UnitSelected += OnUnitSelected;
 
 		gridController = GridController.Instance;
 
 		mainCam = Camera.main;
 	}
+
 	private void Update()
 	{
 		if (Input.GetMouseButtonUp(0))
 			MouseUp();
+		if (Input.GetMouseButtonDown(1))
+			OnRightClick();
 	}
 
 	private void MouseUp()
@@ -39,9 +46,24 @@ public class InputController : MonoBehaviour
 			DragCompleted();
 	}
 
+	private void OnRightClick()
+	{
+		RaycastHit2D rayHit = Physics2D.GetRayIntersection(mainCam.ScreenPointToRay(Input.mousePosition));
+
+		if (rayHit.collider != null)
+		{
+			if (activeUnit != null)
+			{
+				var gridObj = rayHit.collider.GetComponent<GridObjectBase>();
+				activeUnit.SetTarget(rayHit.point, gridObj);
+			}
+
+		}
+	}
+
 	public void OnDragBegin(ProductInfoScriptable productInfo)
 	{
-		Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector3 pos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
 		GridObjectBase product = ActionManager.GetItemFromPool(productInfo.PoolType, pos, null).GetComponent<GridObjectBase>();
 
@@ -103,5 +125,19 @@ public class InputController : MonoBehaviour
 		{
 			gridController.FillGrids(activeProduct, activeGrid);
 		}
+	}
+
+	private void OnUnitSelected(SoldierBase unit)
+	{
+		if (activeUnit == null)
+			activeUnit = unit;
+
+		if (unit != activeUnit)
+		{
+			activeUnit.UnitChanged();
+			activeUnit = unit;
+		}
+
+		activeUnit.UnitSelected();
 	}
 }

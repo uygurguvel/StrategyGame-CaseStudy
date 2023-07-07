@@ -22,9 +22,12 @@ namespace GameExt
 		SOLDIER_2 = 11,
 		SOLDIER_3 = 12,
 
-		//UI_ELEMENTS 20,29;
+		//UI_ELEMENTS 20-29;
 		UI_PRODUCT_HOLDER = 20,
 		UI_UNIT_HOLDER = 21,
+
+		//OTHER_OBJECTS = 30-49;
+		TARGET_POINT = 30,
 	}
 
 	[Serializable]

@@ -111,21 +111,4 @@ public class GridController : Singleton<GridController>
 
 		return relevantGrids.ToArray();
 	}
-
-#if UNITY_EDITOR
-	private void OnDrawGizmos()
-	{
-		Gizmos.color = Color.black;
-
-		for (int i = 0; i < grids.GetLength(0) - 1; i++)
-		{
-			for (int k = 0; k < grids.GetLength(1) - 1; k++)
-			{
-				Gizmos.DrawLine(GetGridWorldPos(grids[i, k]), GetGridWorldPos(grids[i + 1, k]));
-				Gizmos.DrawLine(GetGridWorldPos(grids[i, k]), GetGridWorldPos(grids[i, k + 1]));
-			}
-		}
-	}
-#endif
-
 }

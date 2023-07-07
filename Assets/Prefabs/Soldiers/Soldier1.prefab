@@ -8,9 +8,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 866313277733238056, guid: 924525abc9bdcc441b2567194011f49d, type: 3}
+      propertyPath: outline
+      value: 
+      objectReference: {fileID: 274895358685678782}
+    - target: {fileID: 866313277733238056, guid: 924525abc9bdcc441b2567194011f49d, type: 3}
       propertyPath: productInfo
       value: 
       objectReference: {fileID: 11400000, guid: 7b80265e16ee66349ac1a584ec7ef482, type: 2}
+    - target: {fileID: 866313277733238056, guid: 924525abc9bdcc441b2567194011f49d, type: 3}
+      propertyPath: aiDestinationSetter
+      value: 
+      objectReference: {fileID: 1583666388947288527}
     - target: {fileID: 1963069211904731028, guid: 924525abc9bdcc441b2567194011f49d, type: 3}
       propertyPath: m_Name
       value: Soldier1
@@ -77,3 +85,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 924525abc9bdcc441b2567194011f49d, type: 3}
+--- !u!1 &274895358685678782 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 640576893992134977, guid: 924525abc9bdcc441b2567194011f49d, type: 3}
+  m_PrefabInstance: {fileID: 807083959491257855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1583666388947288527 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2218311599050564656, guid: 924525abc9bdcc441b2567194011f49d, type: 3}
+  m_PrefabInstance: {fileID: 807083959491257855}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

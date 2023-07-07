@@ -58,7 +58,7 @@ public abstract class GridObjectBase : MonoBehaviour, IGridObject
 			ActionManager.ReturnItemToPool(gameObject, productInfo.PoolType);
 	}
 
-	protected void Insert()
+	protected virtual void Insert()
 	{
 		spriteRend.color = Color.white;
 	}

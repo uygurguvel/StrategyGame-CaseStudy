@@ -123,9 +123,21 @@ MonoBehaviour:
   spriteRend: {fileID: 656683011051145747}
   boxCollider: {fileID: 1835713141738922210}
   productInfo: {fileID: 11400000, guid: ef8e9d5d6d5bb194a9ce814684867497, type: 2}
+  dynamicObstacle: {fileID: 9017480560938488513}
   spawnPoint: {fileID: 1461612051126591595}
 --- !u!4 &7260312979459358566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9059011885107020007, guid: e94a64602a9b0aa4eb8f0ca68d2af672, type: 3}
   m_PrefabInstance: {fileID: 1835713141037449089}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9017480560938488513 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7232013177682603328, guid: e94a64602a9b0aa4eb8f0ca68d2af672, type: 3}
+  m_PrefabInstance: {fileID: 1835713141037449089}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7260312979459358565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
